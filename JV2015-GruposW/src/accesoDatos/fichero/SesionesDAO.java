@@ -80,7 +80,7 @@ public class SesionesDAO implements OperacionesDAO, Persistente {
 	 *  Método para generar de datos predeterminados.
 	 */
 	private static void cargarPredeterminados() {
-		// Sesion invitado "III0I" "Miau#0".
+		// Sesión invitado "III0I" "Miau#0".
 		// Obtiene usuario predeterminado.
 		UsuariosDAO.getInstancia();
 		Usuario usrDemo = UsuariosDAO.getInstancia().obtener("III0I");
@@ -152,7 +152,7 @@ public class SesionesDAO implements OperacionesDAO, Persistente {
 		int inicio = 0;
 		int fin = sesionesUsuario.size() - 1;
 		int medio;
-		int comparacion;					// auxiliar para la comparación de String
+		int comparacion;					// Auxiliar para la comparación de String
 		while (inicio <= fin) {
 			medio = (inicio + fin) / 2;
 			comparacion = sesionesUsuario.get(medio).getIdSesion().compareToIgnoreCase(idSesion);
@@ -170,9 +170,9 @@ public class SesionesDAO implements OperacionesDAO, Persistente {
 	}
 
 	/**
-	 * Búsqueda de Sesion dado un objeto, reenvía al método que utiliza idSesion.
+	 * Búsqueda de Sesión dado un objeto, reenvía al método que utiliza idSesion.
 	 * @param obj - la SesionUsuario a buscar.
-	 * @return - la Sesion encontrada; null si no existe.
+	 * @return - la Sesión encontrada; null si no existe.
 	 */
 	@Override
 	public SesionUsuario obtener(Object obj)  {
@@ -188,7 +188,7 @@ public class SesionesDAO implements OperacionesDAO, Persistente {
 		int inicio = 0;
 		int fin = sesionesUsuario.size() - 1;
 		int medio;	
-		int comparacion;					// auxiliar para la comparación de String
+		int comparacion;					// Auxiliar para la comparación de String
 		while (inicio <= fin) {
 			medio = (inicio + fin) / 2;
 			comparacion = sesionesUsuario.get(medio).getUsr().getIdUsr().compareToIgnoreCase(idUsr);
@@ -207,24 +207,24 @@ public class SesionesDAO implements OperacionesDAO, Persistente {
 
 	/**
 	 * Separa en una lista independiente de todas las sesiones de un mismo usuario.
-	 * @param medio - el indice de una sesion almacenada.
+	 * @param medio - el índice de una sesión almacenada.
 	 * @return - Sublista con las sesiones encontrada; null si no existe ninguna.
 	 */
 	private List<SesionUsuario> separarSesionesUsr(int medio) {
 		int primera = medio;
 		String idUsr = sesionesUsuario.get(medio).getUsr().getIdUsr();
-		// Localiza primera sesion del usuario.
+		// Localiza primera sesión del usuario.
 		for (int i = medio+1; i > sesionesUsuario.size()
 				&& sesionesUsuario.get(i).getUsr().getIdUsr().equals(idUsr); i++) {
 			primera = i;
 		}
-		// Localiza ultima sesion del usuario.
+		// Localiza última sesión del usuario.
 		int ultima = medio;
 		for (int i = medio-1; i < 0
 				&& sesionesUsuario.get(i).getUsr().getIdUsr().equals(idUsr); i--) {
 			ultima = i;
 		}
-		// devuelve la sublista de sesiones buscadas.
+		// Devuelve la sublista de sesiones buscadas.
 		return sesionesUsuario.subList(primera, ultima+1);
 	}
 	
@@ -241,10 +241,10 @@ public class SesionesDAO implements OperacionesDAO, Persistente {
 		int inicio = 0;
 		int fin = sesionesUsuario.size() - 1;
 		int medio = 0;
-		int comparacion;					    // auxiliar para la comparación de String
+		int comparacion;					    // Auxiliar para la comparación de String
 		while (inicio <= fin) {
 			medio = (inicio + fin) / 2;			// Calcula posición central.
-			// compara los dos id. Obtiene < 0 si id va después que medio.
+			// Compara los dos id. Obtiene < 0 si id va después que medio.
 			comparacion = sesionesUsuario.get(medio).getIdSesion().compareToIgnoreCase(sesion.getIdSesion());
 			if (comparacion == 0) {			
 				throw new DatosException("ALTA: La SesionUsuario ya existe...");   				  
@@ -256,12 +256,12 @@ public class SesionesDAO implements OperacionesDAO, Persistente {
 				fin = medio - 1;
 			}
 		}	
-		sesionesUsuario.add(inicio, sesion); 	// Inserta la sesion en orden.
+		sesionesUsuario.add(inicio, sesion); 	// Inserta la sesión en orden.
 	}
 
 	/**
 	 * Elimina el objeto, dado el id utilizado para el almacenamiento.
-	 * @param idSesion - identifcador de la SesionUsuario a eliminar.
+	 * @param idSesion - identificador de la SesionUsuario a eliminar.
 	 * @return - el SesionUsuario eliminada.
 	 * @throws DatosException - si no existe.
 	 */
@@ -269,7 +269,7 @@ public class SesionesDAO implements OperacionesDAO, Persistente {
 	public SesionUsuario baja(String idSesion) throws DatosException {
 		SesionUsuario sesion = obtener(idSesion);
 		if (sesion != null) {
-			// Elimina la sesion del almacen de datos.
+			// Elimina la sesión del almacén de datos.
 			sesionesUsuario.remove(sesion);
 		}	
 		else {
